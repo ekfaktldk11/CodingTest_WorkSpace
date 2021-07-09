@@ -30,3 +30,21 @@ print(-val_int)
 val = ord(input()) # 문자 -> 정수 로 변환하기위한 ord()
 print(chr(val+1)) # 정수 -> 문자 로 변환하기위한 chr()
 
+# 7. 16진수로 입력된 문자를 16진수 곱셈식으로 출력
+n = int(input(), 16) # -> int(x, 16) x를 16진수로 변경
+for i in range(1, 16):
+    print('%X'%n, '*%X'%i, '=%X'%(n*i), sep = "")
+    # 또는 print("%X*%X=%X"%(n,i,n*i))
+
+"""
+위 결과 만약 입력된 문자가 'B' 라면
+
+B*1=B
+B*2=16
+B*3=21
+B*4=2C
+.
+.
+.
+로 출력됨
+"""

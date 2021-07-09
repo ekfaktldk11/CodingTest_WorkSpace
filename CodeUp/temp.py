@@ -1,3 +1,2 @@
-a = input()
-n = int(a)
-print('%x'% n)
+a = int(ord(input()))
+print("%X"% a)

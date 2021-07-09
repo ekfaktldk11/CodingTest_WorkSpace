@@ -17,3 +17,11 @@ a = "apple" / b = "cake" 일때
 print(a, b) 하면 결과는 apple cake 로 나옴
 print(a+b) 하면 결과는 applecake로 나옴
 """
+
+# 5. 출력 방식
+a = ord(input())
+a_ord = ord('a')
+ary = []
+for _ in range(a - a_ord + 1):
+    print(chr(a_ord + _), end = " ")
+    # -> print(, end = " ") -> 출력시 줄바꿈대신 공백으로 출력 end 시행 처리

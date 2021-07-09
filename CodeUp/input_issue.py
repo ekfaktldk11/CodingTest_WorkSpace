@@ -18,3 +18,6 @@ print(a, b, sep=':')
 a = input()
 b = input()
 """
+
+# 4. 입력된 문자를 16진수로 인식
+n = int(input(), 16)
