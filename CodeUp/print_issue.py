@@ -25,3 +25,5 @@ ary = []
 for _ in range(a - a_ord + 1):
     print(chr(a_ord + _), end = " ")
     # -> print(, end = " ") -> 출력시 줄바꿈대신 공백으로 출력 end 시행 처리
+    # -> print("\n") -> 이건 \n\n 과 같음
+    # -> print(, end = " ") 을 사용하다가 줄바꿈을 하고 싶은경우 print("\n") 을 사용하지말고 print() 만 해줘도 됨
