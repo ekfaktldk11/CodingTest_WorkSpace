@@ -29,7 +29,8 @@ n, m = map(int, input().split())
 # 2차원 리스트의 맵 정보 입력받기
 graph = []
 for i in range(n):
-    # 여기서 중요한 것이 한 row 씩 공백없이 입력되는 것을 그대로 정수로 받음. [[000111011], [110110010], ...] 이런식으로
+    # 여기서 중요한 것이 graph.append(list(map(int, input().split())))로 실행 시 [[000111011], [110110010], ...] 이런식으로 할당됨
+    # 공백없이 입력될 때는 graph.append(list(map(int, input())))로 실행 해야 [[0, 1, 0 ...]] 이런식으로 할당됨
     graph.append(list(map(int, input())))
 
 # DFS로 특정한 노드를 방문한 뒤에 연결된 모든 노드들도 방문
