@@ -33,7 +33,8 @@ start_time = time.time()
 # 기본 정렬 라이브러리 사용
 array.sort()
 # 기본은 내림차순
-# .sorted() : 정렬된 새로운 객체를 반환 , 리스트 뿐아니라 딕셔너리 형태도 정렬 가능 sorted({3: 'D', 2: 'B', 5: 'B', 4: 'E', 1: 'A'}) -> [1, 2, 3, 4, 5]
+# sorted() : 정렬된 새로운 객체를 반환 , 리스트 뿐아니라 딕셔너리 형태도 정렬 가능 sorted({3: 'D', 2: 'B', 5: 'B', 4: 'E', 1: 'A'}) -> [1, 2, 3, 4, 5]
+# sorted(array, key=setting)으로 키값도 함께 가져올 수 있음
 # .sort(reverse=True) -> 오름차순
 
 end_time = time.time()  # 기본 정렬 라이브러리 성능 측정 종료
