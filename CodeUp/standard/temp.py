@@ -1,22 +1,30 @@
-# 삽입 정렬 -> 특정한 데이터를 적절한 위치에 삽입 / 필요할 때 만 swap이 이루어짐
-ary = list(map(int, input().split()))
+# 퀵 정렬 -> 기준 데이터를 설정하고 그 기준보다 큰 데이터와 작은 데이터의 위치를 바꿈
 
-n = len(ary)
+array = list(map(int, input().split()))
 
-for i in range(1, n): # 0 번째 요소는 이미 정렬이 되어있다고 가정!
-    for j in range(i, 0, -1): # 인덱스 i부터 1까지 감소하며 반복하는 문법
-        if ary[j] < ary[j - 1]: # < 를 > 로 바꾸면 내림차순
-            ary[j], ary[j - 1] = ary[j - 1], ary[j]
-        else: # 최초위치에서 왼쪽의 요소 하나만 check 해서 그 요소 보다 후 순위에 들어갈 예정이면 더 앞부분은 볼필요도 없음
-            break
 
-print(ary)
+def quick_sort(array, start, end):
+    if start >= end:  # 원소가 1개인 경우 종료
+        return
+    pivot = start  # 피벗 => 첫 번째 원소
+    left = start + 1
+    right = end
+    while left <= right:
+        # 피벗보다 큰 데이터를 찾을 때까지 반복
+        while left <= end and array[left] <= array[pivot]:
+            left += 1
+        # 피벗보다 작은 데이터를 찾을 때까지 반복
+        while right > start and array[right] >= array[pivot]:
+            right -= 1
+        if left > right:  # 엇갈렸다면 작은 데이터와 피벗을 교체
+            array[right], array[pivot] = array[pivot], array[right]
+        else:  # 엇갈리지 않았다면 작은 데이터와 큰 데이터를 교체
+            array[left], array[right] = array[right], array[left]
 
-"""
-- range()의 매개 변수는 3개(start, end, step)임
-- 세 번째 매개 변수인 step에 -1이 들어가면 start 인덱스부터 시작해서 "end + 1" 인덱스까지 1씩 감소
-- 삽입 정렬 또한 선택 정렬과 마찬가지로 반복문의 depth 가 2 라서 O(N^2)
-- 하지만 삽입 정렬은 Best case의 경우(이미 거의 정렬이 완료되어 있을 경우) 시간 복잡도는 O(N)
-- 따라서 삽입 정렬은 거의 정렬되어 있는 상태로 입력이 주어지는 문제에 다른 정렬 알고리즘들 보다 유리
-- O(N) for Best / O(N^2) for Avg, Worst
-"""
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
+    quick_sort(array, start, right - 1)
+    quick_sort(array, right + 1, end)
+
+
+quick_sort(array, 0, len(array) - 1)
+print(array)
