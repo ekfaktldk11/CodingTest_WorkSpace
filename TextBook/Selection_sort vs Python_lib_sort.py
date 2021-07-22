@@ -34,7 +34,6 @@ start_time = time.time()
 array.sort()
 # 기본은 내림차순
 # sorted() : 정렬된 새로운 객체를 반환 , 리스트 뿐아니라 딕셔너리 형태도 정렬 가능 sorted({3: 'D', 2: 'B', 5: 'B', 4: 'E', 1: 'A'}) -> [1, 2, 3, 4, 5]
-# sorted(array, key=setting)으로 키값도 함께 가져올 수 있음
 # .sort(reverse=True) -> 오름차순
 
 end_time = time.time()  # 기본 정렬 라이브러리 성능 측정 종료
@@ -45,3 +44,12 @@ print("기본 정렬 라이브러리 성능 측정:", end_time - start_time)
 선택 정렬 성능 측정: 10.980623960494995
 기본 정렬 라이브러리 성능 측정: 0.0019941329956054688
 """
+
+# sorted(array, key=func())으로 func()을 기준으로 정렬이 가능함
+array = [('바나나', 2), ('사과', 5), ('당근', 3)]
+
+def setting(data):
+    return data[1]
+result = sorted(array, key=setting)
+print(result)
+# [('바나나', 2), ('당근', 3), ('사과', 5)]

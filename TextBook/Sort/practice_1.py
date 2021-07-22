@@ -24,12 +24,12 @@ for i in range(n):
     name, score = input().split()
     ary.append((name, int(score)))
 
-result = sorted(ary, key=lambda student: student[1])
+result = sorted(ary, key= lambda student: student[1])
 
 for i in range(n):
-    print(result[i][0], end=' ')
+    print(ary[0], end=' ')
 """
 * 결론
-- 학생의 정보가 최대 100,000개 까지 입력될 수 있으므로 최악의 경우 O(N*logN)을 보장해야함
-- sorted() 를 사용하되, lambda를 이용하여 정렬 기준설정
+- '가장 큰 수를 K번 더하고 두 번쨰로 큰 수를 한 번 더하는 연산' 의 접근이 중요
+- 정렬 알고리즘이 아닌 .sort() 라는 기본 정렬 라이브러리 함수를 사용
 """
