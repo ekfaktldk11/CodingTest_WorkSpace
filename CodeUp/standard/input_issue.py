@@ -76,3 +76,23 @@ data = [sys.stdin.readline().strip() for i in range(n)]
 print(data)
 # ['코딩테스트', '꼭 한번에 붙고 싶다', '열공하자']
 
+"""
+sys.stdin.readline().strip('str') : 인자로 전달된 문자를 String의 왼쪽과 오른쪽에서 제거
+sys.stdin.readline().lstrip('str') : 인자로 전달된 문자를 String의 왼쪽에서 제거
+sys.stdin.readline().rstrip('str') : 인자로 전달된 문자를 String의 오른쪽에서 제거
+!! 중요 !!
+(1). strip 함수는(l,r 포함) 함수 인자가 없을 경우 인자로 ' ' 공백을 받기 때문에 공백을 지움
+(2). strip 함수는(l,r 포함) 동일하지 않은 문자가 나올 때까지 제거함 -> 인자와 상관없는 문자가 나오면 문자 제거 중단
+(3). sys 라이브러리를 사용할 때는 한 줄 입력받고 나서 rstrip() 함수를 꼭 호출해야함
+왜냐하면 readline() 사용시 Enter가 줄 바꿈 기호로 입력되는데, 이 공백 문자를 제거하려면 rstrip() 함수를 사용해야함
+
+ex)
+text = ",,,,,123.....water....pp"
+print(text.lstrip(',123.p'))
+print(text.rstrip(',123.p'))
+print(text.strip(',123.p'))
+
+water....pp
+,,,,,123.....water
+water
+"""
