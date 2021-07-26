@@ -34,6 +34,7 @@ sys.stdin.readline() 사용법
 # 1. 한 개의 정수를 입력받을 때
 
 import sys
+
 a = int(sys.stdin.readline())
 # -> sys.stdin.readline() 은 한줄 단위로 입력받기 때문에,
 # 개행문자가 같이 입력받아짐. ex(\n) -> 이 기행문자를 제거하기 위해서
