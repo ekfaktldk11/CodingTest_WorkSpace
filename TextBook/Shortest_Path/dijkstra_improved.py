@@ -50,7 +50,9 @@ def improved_dij(start):
             # 현재 노드를 거쳐서, 다른노드로 이동하는 거리가 더 짧은 경우
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
-                heapq.heappush(q, (cost, i[0]))
+                heapq.heappush(q, (cost, i[0])) # push할 때마다 cost 가낮은 순으로 알아서 정렬됨.
+                # q : [(cost, i[0]), ... ] 알아서 정렬 될때 ()안의 제일 앞에 있는 값 cost 를 기준으로 정렬됨.
+                # 위와 같은 형식을 맞추는것도 중요하겠음!
 
 # 디익스트라 알고리즘 수행
 improved_dij(start)
