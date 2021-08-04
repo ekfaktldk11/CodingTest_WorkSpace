@@ -3,28 +3,17 @@
 - 서로소 부분 집합들로 나누어진 원소들의 데이터를 처리하기 위한 자료구조
 - union(합집합) 연산 : 2개의 원소가 포함된 집합을 하나의 집합으로 합치는 연산
 - find(찾기) 연산 : 특정한 원소가 속한 집합이 어떤 집합인지 알려주는 연산
-- 경로 압축 기법을 꼭 외워두자 ~
+
 '''
 
-
-# ----------- 기본적인 서로소 집합 알고리즘 소스코드 -----------------
+# (1). 기본적인 서로소 집합 알고리즘 소스코드
 
 # 특정 원소가 속한 집합을 찾기 (부모 노드 찾기)
-# (1). 최대 O(V) 의 시간복잡도를 가지는 find_parent() / V : 노드의 수
 def find_parent(parent, x):
     # 루트 노드가 아니라면 루트 노드를 찾을 때까지 재귀적으로 호출
     if parent[x] != x:
         return find_parent(parent, parent[x])
     return x
-
-# (2). 개선된 find_parent (경로 압축 기법)
-# 단순히 얘기하자면 (1)에서 한번 최종 부모를 찾으면 현재부모값을 최종 부모값으로 갱신해 놓음
-def find_parent_upgrade(parent, x):
-    # 루트 노드가 아니라면 루트 노드를 찾을 때까지 재귀적으로 호출
-    if parent[x] != x:
-        parent[x] = find_parent(parent, parent[x])
-    return parent[x]
-
 
 # 두 원소가 속한 집합을 합치기
 def union_parent(parent, a, b):
@@ -36,10 +25,9 @@ def union_parent(parent, a, b):
     else:
         parent[b] = a
 
-
 # 노의 개수와 간선(union 연산)읜 개수 입력받기
 v, e = map(int, input().split())
-parent = [0] * (v + 1)  # 부모 테이블 초기화
+parent = [0] * (v + 1) # 부모 테이블 초기화
 
 # 부모 테이블상에서, 부모를 자기 자신으로 초기화
 for i in range(1, v + 1):
@@ -51,13 +39,13 @@ for i in range(e):
     union_parent(parent, a, b)
 
 # 각 원소가 속한 집합 출력
-print('각 원소가 속한 집합 : ', end='')
+print('각 원소가 속한 집합 : ')
 for i in range(1, v + 1):
     print(find_parent(parent, i), end=' ')
 
 print()
 
 # 부모 테이블 내용 출력
-print('부모 테이블 : ', end='')
+print('부모 테이블 : ')
 for i in range(1, v + 1):
     print(parent[i], end=' ')

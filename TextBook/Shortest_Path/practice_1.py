@@ -26,7 +26,7 @@ for a in range(1, n + 1):
 for i in range(m):
     a, b = map(int, input().split())
     graph[a][b] = 1
-    graph[b][a] = 1 # (빼먹은 부분) -> directed 간선 고려
+    graph[b][a] = 1 # (빼먹은 부분) -> undirected(무방향) 간선 고려
 
 x, k = map(int, input().split())
 
