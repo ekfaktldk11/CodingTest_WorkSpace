@@ -40,8 +40,11 @@ for i in range(m):
         cycle = True
         break
     else:
-        union(parent, p, q)
+        union(parent, p, q) # union()을 수행함으로써 tracking을 하는 것임
 if cycle:
     print('사이클이 발생 했습니다.')
 else:
     print('사이클이 발생하지 않았습니다.')
+"""
+* union() 을 통해 tracking 을 해가면서 사이클이 발생하는지 check ~ 
+"""
