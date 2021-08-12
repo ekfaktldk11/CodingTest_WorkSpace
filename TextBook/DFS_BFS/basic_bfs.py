@@ -1,5 +1,6 @@
 # !!! 여기서 출력하는 순서는 탐색 순서(큐에 들어간 순서)임 !!!
 # bfs, dfs 모두 스택이나 큐에 들어가는 순간 visited[i] 해서 방문했다는 처리부터함
+# queue 에 들어감과 동시에 방문 완료
 
 # BFS 메소드 정의 -> Queue 사용!
 from collections import deque
