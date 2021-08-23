@@ -1,39 +1,44 @@
-import heapq
-
 n, m = map(int, input().split())
-INF = int(1e9)
-graph = [[] for _ in range(n + 1)]
 
-for _ in range(m):
-    a, b = map(int, input().split())
-    graph[a].append((1, b))
-    graph[b].append((1, a))
+graph = []
 
-distance = [INF] * (n + 1)
+for _ in range(n):
+    temp = list(map(int, input().split()))
+    graph.append(temp)
 
-def dij(start):
-    q = []
-    heapq.heappush(q, (0, start))
-    distance[start] = 0
+city_list = list(map(int, input().split()))
 
-    while q:
-        dist, now = heapq.heappop(q)
-        if distance[now] < dist: continue
+parent = [0] * n
 
-        for i in graph[now]:
-            cost = dist + i[0]
-            if cost < distance[i[1]]:
-                distance[i[1]] = cost
-                heapq.heappush(q, (cost, i[1]))
+for i in range(n):
+    parent[i] = i
 
-dij(1)
-max_val = max(distance[2:])
-max_list = []
-for i in range(2, n + 1):
-    if distance[i] == max_val:
-        max_list.append(i)
+def find(parent, x):
+    if parent[x] != x:
+        parent[x] = find(parent, parent[x])
+    return parent[x]
 
-max_list.sort()
-print(max_list[0], end=' ')
-print(max_val, end=' ')
-print(len(max_list))
+def union(parent, a, b):
+    a = find(parent, a)
+    b = find(parent, b)
+    if a > b:
+        parent[a] = b
+    else:
+        parent[b] = a
+
+# 일단 전부 union 시켜서 이음
+for i in range(n):
+    for j in range(n):
+        if graph[i][j] == 1:
+            union(parent, i, j)
+
+# 여행 계획에 있는 모든 노드들의 parent가 다르면 여행계획대로 이동 불가
+master = find(parent, city_list[0])
+flag = True
+for node in city_list[1:]:
+    if find(parent, node) != master:
+        print('NO')
+        flag = False
+        break
+
+if flag: print('YES')
