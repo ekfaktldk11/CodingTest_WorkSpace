@@ -53,3 +53,5 @@ def setting(data):
 result = sorted(array, key=setting)
 print(result)
 # [('바나나', 2), ('당근', 3), ('사과', 5)]
+
+# [(1, 2), (1, 1)], [[1, 2], [1, 1]] 를 sort()든 sorted()든 사용하여 정렬하면 [(1, 1), (1, 2)], [[1, 1], [1, 2]] 로 정렬됨

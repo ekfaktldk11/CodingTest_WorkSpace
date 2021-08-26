@@ -1,45 +1,20 @@
-n, m = map(int, input().split())
+def solution(tickets):
+    # [(1, 2), (1, 1)], [[1, 2], [1, 1]] 를 sort()든 sorted()든 사용하여 정렬하면 [(1, 1), (1, 2)], [[1, 1], [1, 2]] 로 정렬됨
 
-house_list = []
-total = 0
-
-for _ in range(m):
-    x, y, z = map(int, input().split())
-    house_list.append((z, x, y))
-    total += z
-
-house_list.sort()
-parent = [0] * n
-for i in range(n):
-    parent[i] = i
-
-def find(parent, x):
-    if parent[x] != x:
-        parent[x] = find(parent, parent[x])
-    return parent[x]
-
-def union(parent, a, b):
-    a = find(parent, a)
-    b = find(parent, b)
-    if a > b:
-        parent[a] = b
-    else:
-        parent[b] = a
-
-while len(house_list) > 0:
-    cost, a, b = house_list.pop(0)
-    if find(parent, a) == find(parent, b): continue
-    else:
-        union(parent, a, b)
-        total -= cost
-
-# for i in range(n):
-#     for j in range(n):
-#         if graph[i][j] > 0:
-#             if find(parent, i) == find(parent, j):
-#                 continue
-#             else:
-#                 union(parent, i, j)
-#                 total += graph[i][j]
-
-print(total)
+    tickets.sort(reverse=True)  # 스택 형식을 사용하기 때문에 reverse=True
+    routes = dict()  # routes = {}
+    for t1, t2 in tickets:
+        if t1 in routes:
+            routes[t1].append(t2)
+        else:
+            routes[t1] = [t2]  # 'port_name' : [dest1, dest2 ...]
+    st = ['ICN']
+    ans = []
+    while st:
+        top = st[-1]
+        if top not in routes or len(routes[top]) == 0:
+            ans.append(st.pop())  # 출발지 또는 경유지 목록에 없기에 도착지점일 수 밖에 없는 port_name을 미리 ans 배열에 넣음 or 더이상 port_name에 대한 dest가 존재하지 않을 경우
+        else:
+            st.append(routes[top].pop())  # 순서가 거꾸로 정렬된 dest 리스트를 뒤에서 부터 뽑아내어 순서에 맞게 -> 나중에 ans.append()로 해당 dest 가 추가 될때 다시 거꾸로 저장되어 밑의 ans.reverse()에서 순서에 맞게 정렬됨
+    ans.reverse()
+    return ans
