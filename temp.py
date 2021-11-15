@@ -1,17 +1,11 @@
-def recur(n):
-    #global ary
-    s_n = str(n)
-    for a in s_n:
-        n += int(a)
-    if n >= 10000: return
-    ary[n] = n
-    recur(n)
+n = int(input())
+num = n;k = 0;total9 = 0;tmp = 0;b = 0
+while num >= 1:
+    num = num / 10
+    k += 1
+    if k > 1:
+        tmp = 9 * (10 ** (k - 2))
+        b += tmp * (k - 1)
+        total9 += tmp
 
-ary = [0] * 10000
-
-for i in range(1, 10000):
-    if ary[i]: continue
-    else: recur(i)
-
-for i in range(1, len(ary)):
-    if not ary[i]: print(i)
+print(b + (n - total9)*k)
